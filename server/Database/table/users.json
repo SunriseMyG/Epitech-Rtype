@@ -1,0 +1,31 @@
+{
+    "1": {
+        "id": "1",
+        "password": "1234",
+        "tcp_socket": "",
+        "udp_socket": "",
+        "username": "mateo"
+    },
+    "2": {
+        "id": "2",
+        "password": "1234",
+        "tcp_socket": "",
+        "udp_socket": "",
+        "username": "mateo2"
+    },
+    "3": {
+        "id": "3",
+        "password": "arthur",
+        "tcp_socket": "",
+        "udp_socket": "",
+        "username": "arthur"
+    },
+    "4": {
+        "ban": "false",
+        "id": "4",
+        "password": "seif",
+        "tcp_socket": "",
+        "udp_socket": "",
+        "username": "seif"
+    }
+}

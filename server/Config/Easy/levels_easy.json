@@ -1,0 +1,13 @@
+{
+    "1": {
+        "name": "level1",
+        "entities": [
+            {
+                "type": "TANK",
+                "spawnTimer": 1,
+                "x": 90,
+                "y": 10
+            }
+        ]
+    }
+}

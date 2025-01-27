@@ -1,0 +1,12 @@
+{
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "loading": "Loading...",
+    "login_failed": "Login failed",
+    "information": "Information",
+    "refresh": "Refresh",
+    "return": "Return",
+    "kick": "Kick",
+    "ban": "Ban"
+}

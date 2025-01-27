@@ -1,0 +1,11 @@
+name: Custom Issue
+description: Report an issue or ask a question that doesn't fit other categories.
+title: "[ISSUE] Descriptive title"
+labels: question
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe your issue or question.
+      placeholder: "Example: I'm having trouble setting up the server in debug mode."

@@ -1,0 +1,43 @@
+{
+    "1": {
+        "name": "level1",
+        "entities": [
+            {
+                "type": "BASIC",
+                "spawnTimer": 1,
+                "x": 90,
+                "y": 10
+            },
+            {
+                "type": "POWERUP",
+                "spawnTimer": 10,
+                "x": 90,
+                "y": 10
+            }
+        ]
+    },
+
+    "2": {
+        "name": "level2",
+        "entities": [
+            {
+                "type": "BASIC",
+                "spawnTimer": 0,
+                "x": 0,
+                "y": 0
+            },
+            {
+                "type": "FAST",
+                "spawnTimer": 0,
+                "x": 0,
+                "y": 0
+            },
+            {
+                "type": "TANK",
+                "spawnTimer": 0,
+                "x": 0,
+                "y": 0
+            }
+        ]
+    }
+}

@@ -1,0 +1,30 @@
+name: Feature Request
+description: Propose a new feature or enhancement for R-Type.
+title: "[FEATURE] Feature title"
+labels: enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please detail your suggestion and explain why it would be useful.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Briefly describe the feature or enhancement.
+      placeholder: "Example: Add a spectator mode to observe ongoing games."
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this feature important?
+      placeholder: "Example: It would improve the player experience and competition dynamics."
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Ideas
+      description: Briefly describe how this could be implemented.
+      placeholder: "Example: Add a flag in the connection command to indicate spectator mode."

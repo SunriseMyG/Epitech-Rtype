@@ -1,0 +1,12 @@
+{
+    "login": "Connexion",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "loading": "Chargement...",
+    "login_failed": "Échec de la connexion",
+    "information": "Information",
+    "refresh": "Rafraîchir",
+    "return": "Retour",
+    "kick": "Expulser",
+    "ban": "Bannir"
+}

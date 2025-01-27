@@ -1,0 +1,41 @@
+name: C++ Linter
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  lint:
+    name: Run C++ Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-tidy build-essential cmake libsfml-dev libboost-all-dev nlohmann-json3-dev
+
+      - name: Configure CMake
+        run: |
+          mkdir -p build
+          cd build
+          cmake -DCMAKE_CXX_STANDARD=17 ..
+
+      - name: Run clang-tidy
+        run: |
+          cd build
+          clang-tidy ../**/*.cpp -- -I../include -std=c++17
+
+      - name: Upload linter results (if needed)
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: linter-results
+          path: build/linter-results.log

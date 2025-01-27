@@ -1,0 +1,25 @@
+name: Documentation Issue
+description: Report an issue or suggestion for improving the documentation.
+title: "[DOC] Descriptive title of the issue"
+labels: documentation
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Explain what is missing or incorrect in the documentation.
+      placeholder: "Example: The server documentation is missing instructions for configuring the network port."
+
+  - type: input
+    id: page
+    attributes:
+      label: Affected Page/Document
+      description: Specify the page or file in question.
+      placeholder: "Example: README.md or docs/server_setup.md"
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Suggestions
+      description: Provide corrections or additions to resolve the issue.
+      placeholder: "Example: Add a configuration example in the 'Configuration' section."

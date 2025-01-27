@@ -1,0 +1,35 @@
+name: Performance Issue
+description: Report a performance issue for R-Type.
+title: "[PERFORMANCE] Descriptive title of the issue"
+labels: performance
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Briefly describe the performance issue encountered.
+      placeholder: "Example: Latency increases significantly when more than 10 players are connected."
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Specify the OS, hardware configuration, etc.
+      placeholder: "Example: Windows 11, Intel i7, 16GB RAM, NVIDIA GTX 1060."
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Explain how to reproduce the performance issue.
+      placeholder: |
+        1. Launch a server with more than 10 players.
+        2. Play for 5 minutes.
+        3. Observe the increase in latency.
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Performance
+      description: Describe the desired performance.
+      placeholder: "Example: Latency should remain stable even with 10 players connected."

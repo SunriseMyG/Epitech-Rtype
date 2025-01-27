@@ -1,0 +1,93 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Clean up apt locks
+      run: |
+        sudo rm -f /var/lib/apt/lists/lock
+        sudo rm -f /var/cache/apt/archives/lock
+        sudo rm -f /var/lib/dpkg/lock-frontend
+        sudo rm -f /var/lib/dpkg/lock
+        sudo dpkg --configure -a
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pkg-config cmake libudev-dev libx11-dev libx11-xcb-dev libfontenc-dev libice-dev libsm-dev libxau-dev libxaw7-dev \
+          libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxkbfile-dev libxmu-dev \
+          libxmuu-dev libxpm-dev libxres-dev libxss-dev libxt-dev libxtst-dev libxv-dev libxxf86vm-dev libxcb-glx0-dev \
+          libxcb-render0-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev \
+          libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev uuid-dev \
+          libxcb-cursor-dev libxcb-dri2-0-dev libxcb-present-dev libxcb-composite0-dev libxcb-ewmh-dev libxcb-res0-dev \
+          libboost-all-dev python3.10-venv libgl1-mesa-dev || { echo "apt-get install failed"; exit 1; }
+
+    - name: Install GCC and G++
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential g++ || { echo "Failed to install GCC/G++"; exit 1; }
+
+    - name: Verify GCC/G++ Installation
+      run: |
+        gcc --version
+        g++ --version
+        which gcc
+        which g++
+
+    - name: Set up Python environment
+      run: |
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install conan
+
+    - name: Configure Conan profile
+      run: |
+        source venv/bin/activate
+        sudo conan profile detect || { echo "Erreur lors de la configuration du profil Conan."; exit 1; }
+
+    - name: Create build directory
+      run: |
+        mkdir -p build
+        sudo chown -R $USER:$USER build
+
+    - name: Install dependencies with Conan
+      run: |
+        source venv/bin/activate
+        sudo conan install . --output-folder=build --build=missing -c tools.system.package_manager:mode=install -g CMakeDeps -g CMakeToolchain
+        if [ ! -f "build/conan_toolchain.cmake" ]; then
+          echo "Toolchain Conan non généré"; exit 1;
+        fi
+
+    - name: Verify toolchain file
+      run: |
+        ls build/conan_toolchain.cmake || { echo "Toolchain file introuvable"; exit 1; }
+
+    - name: Configure and build with CMake
+      run: |
+        source venv/bin/activate
+        export CXX=$(which g++)
+        export CC=$(which gcc)
+        sudo cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake || { echo "Erreur de configuration CMake."; exit 1; }
+        sudo cmake --build build || { echo "Erreur de compilation."; exit 1; }
+
+    - name: Copy compiled files
+      run: |
+        cp build/r-type_server . || { echo "Erreur lors de la copie du serveur."; exit 1; }
+        cp build/r-type_client . || { echo "Erreur lors de la copie du client."; exit 1; }
+
+    - name: Build completed
+      run: echo "Compilation terminée pour Linux."

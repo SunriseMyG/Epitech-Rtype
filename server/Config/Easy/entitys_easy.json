@@ -1,0 +1,77 @@
+{
+    "BASIC": {
+        "health": 10,
+        "speed": 10,
+        "reward": 10,
+        "mouvement": {
+            "pattern": "LINEAR",
+            "direction": "LEFT"
+        },
+        "hitbox": {
+            "width": 10,
+            "height": 10
+        },
+        "bulletType": "BASIC",
+        "timeRemaining": 0
+    },
+    "FAST": {
+        "health": 10,
+        "speed": 2,
+        "reward": 20,
+        "mouvement": {
+            "pattern": "SINUSOIDAL",
+            "direction": "LEFT"
+        },
+        "hitbox": {
+            "width": 10,
+            "height": 10
+        },
+        "bulletType": "FAST",
+        "timeRemaining": 0
+    },
+    "TANK": {
+        "health": 20,
+        "speed": 5,
+        "reward": 30,
+        "mouvement": {
+            "pattern": "LINEAR",
+            "direction": "UP"
+        },
+        "hitbox": {
+            "width": 30,
+            "height": 30
+        },
+        "bulletType": "TANK",
+        "timeRemaining": 0
+    },
+    "PLAYER": {
+        "health": 10,
+        "speed": 1,
+        "reward": 0,
+        "mouvement": {
+            "pattern": "",
+            "direction": ""
+        },
+        "hitbox": {
+            "width": 5,
+            "height": 5
+        },
+        "bulletType": "BASIC",
+        "timeRemaining": 0
+    },
+    "POWERUP": {
+        "health": 0,
+        "speed": 0,
+        "reward": 0,
+        "mouvement": {
+            "pattern": "",
+            "direction": ""
+        },
+        "hitbox": {
+            "width": 5,
+            "height": 5
+        },
+        "bulletType": "",
+        "timeRemaining": 10
+    }
+}

@@ -1,0 +1,230 @@
+{
+    "protocol": {
+      "tcp": {
+        "player_management": {
+          "connect": {
+            "code": "100",
+            "server_sends": "PLAYER_ID",
+            "client_receives": "PLAYER_ID",
+            "description": "Établit la connexion initiale du joueur"
+          },
+          "register": {
+            "code": "120",
+            "server_sends": {
+              "username": "string",
+              "password": "string"
+            },
+            "client_receives": "OK/KO",
+            "description": "Inscription d'un nouveau joueur"
+          },
+          "login": {
+            "code": "121",
+            "server_sends": {
+              "username": "string",
+              "password": "string"
+            },
+            "client_receives": "OK/KO",
+            "description": "Connexion d'un joueur existant"
+          },
+          "disconnect": {
+            "code": "113",
+            "server_sends": null,
+            "client_receives": "PLAYER_ID",
+            "description": "Déconnexion du joueur"
+          }
+        },
+        "room_management": {
+          "create_room": {
+            "code": "102",
+            "server_sends": {
+              "name": "string",
+              "password": "string",
+              "max_players": "integer"
+            },
+            "client_receives": "OK/KO",
+            "description": "Création d'une nouvelle salle"
+          },
+          "join_room": {
+            "code": "103",
+            "server_sends": {
+              "room_id": "string",
+              "password": "string"
+            },
+            "client_receives": "OK/KO",
+            "description": "Rejoindre une salle existante"
+          },
+          "get_rooms": {
+            "code": "104",
+            "server_sends": null,
+            "client_receives": "ROOMS",
+            "description": "Liste des salles disponibles"
+          },
+          "leave_room": {
+            "code": "112",
+            "server_sends": null,
+            "client_receives": {
+              "status": "OK/KO",
+              "players": "LIST_OF_ID"
+            },
+            "description": "Quitter une salle"
+          },
+          "get_players": {
+            "code": "119",
+            "server_sends": null,
+            "client_receives": "LIST_OF_ID",
+            "description": "Liste des joueurs dans la salle"
+          }
+        },
+        "game_management": {
+          "start_game": {
+            "code": "105",
+            "server_sends": null,
+            "client_receives": "OK/KO",
+            "description": "Démarrer une partie"
+          },
+          "end_game": {
+            "code": "114",
+            "server_sends": null,
+            "client_receives": null,
+            "description": "Terminer une partie"
+          },
+          "change_difficulty": {
+            "code": "118",
+            "server_sends": "EASY/MEDIUM/HARD",
+            "client_receives": "OK/KO",
+            "description": "Modifier la difficulté"
+          }
+        },
+        "social_and_stats": {
+          "private_message": {
+            "code": "122",
+            "server_sends": {
+              "player_id": "string",
+              "message": "string"
+            },
+            "client_receives": "OK/KO",
+            "description": "Envoyer un message privé"
+          },
+          "room_message": {
+            "code": "123",
+            "server_sends": "MESSAGE",
+            "client_receives": "OK/KO",
+            "description": "Envoyer un message dans la salle"
+          },
+          "main_menu_message": {
+            "code": "124",
+            "server_sends": "MESSAGE",
+            "client_receives": "OK/KO",
+            "description": "Envoyer un message dans le menu principal"
+          },
+          "get_leaderboard": {
+            "code": "125",
+            "server_sends": null,
+            "client_receives": "LEADERBOARD",
+            "description": "Obtenir le classement"
+          },
+          "set_score": {
+            "code": "126",
+            "server_sends": "SCORE",
+            "client_receives": "OK/KO",
+            "description": "Mettre à jour le score"
+          },
+          "get_all_stats": {
+            "code": "129",
+            "server_sends": null,
+            "client_receives": "STATS",
+            "description": "Obtenir toutes les statistiques"
+          },
+          "get_player_stats": {
+            "code": "130",
+            "server_sends": "PLAYER_ID",
+            "client_receives": "STATS",
+            "description": "Obtenir les statistiques d'un joueur"
+          }
+        }
+      },
+      "udp": {
+        "real_time_events": {
+          "connect": {
+            "code": "101",
+            "server_sends": "PLAYER_ID",
+            "client_receives": "OK",
+            "description": "Connexion UDP"
+          },
+          "event_hold": {
+            "code": "106",
+            "server_sends": "ENUM_KEY",
+            "client_receives": {
+              "status": "OK",
+              "key": "KEY_PRESSED"
+            },
+            "description": "Touche maintenue"
+          },
+          "event_push": {
+            "code": "107",
+            "server_sends": "ENUM_KEY",
+            "client_receives": {
+              "status": "OK",
+              "key": "KEY_PRESSED"
+            },
+            "description": "Touche appuyée"
+          },
+          "score": {
+            "code": "108",
+            "server_sends": "SCORE (+/-)",
+            "client_receives": {
+              "status": "OK",
+              "score": "SCORE"
+            },
+            "description": "Mise à jour du score"
+          },
+          "level": {
+            "code": "109",
+            "server_sends": "LEVEL",
+            "client_receives": "LEVEL",
+            "description": "Changement de niveau"
+          }
+        },
+        "entity_management": {
+          "player_death": {
+            "code": "110",
+            "server_sends": null,
+            "client_receives": "PLAYER_ID",
+            "description": "Mort d'un joueur"
+          },
+          "enemy_death": {
+            "code": "111",
+            "server_sends": null,
+            "client_receives": "ID",
+            "description": "Mort d'un ennemi"
+          },
+          "enemy_spawn": {
+            "code": "115",
+            "server_sends": {
+              "id": "string",
+              "position": "object",
+              "type": "string"
+            },
+            "client_receives": {
+              "id": "string",
+              "position": "object",
+              "type": "string"
+            },
+            "description": "Apparition d'un ennemi"
+          },
+          "player_spawn": {
+            "code": "116",
+            "server_sends": {
+              "id": "string",
+              "position": "object"
+            },
+            "client_receives": {
+              "id": "string",
+              "position": "object"
+            },
+            "description": "Apparition d'un joueur"
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,26 @@
+{
+    "1": {
+        "nbrDeaths": 0,
+        "nbrGames": 4,
+        "nbrKills": 9,
+        "nbrLosses": 0,
+        "nbrWins": 4,
+        "score": 0
+    },
+    "2": {
+        "nbrDeaths": 0,
+        "nbrGames": 2,
+        "nbrKills": 7,
+        "nbrLosses": 0,
+        "nbrWins": 2,
+        "score": 0
+    },
+    "3": {
+        "nbrDeaths": 2,
+        "nbrGames": 54,
+        "nbrKills": 60,
+        "nbrLosses": 2,
+        "nbrWins": 39,
+        "score": 0
+    }
+}
